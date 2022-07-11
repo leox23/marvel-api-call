@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 public class ApiCall {
-    public static final Logger log = Logger.getLogger(String.valueOf(CharacterCall.class));
+    public static final Logger log = Logger.getLogger(String.valueOf(Character.class));
 
     final OkHttpClient client = new OkHttpClient();
 
@@ -23,8 +23,8 @@ public class ApiCall {
         }
     }
 
-    public static void result(String characterId) throws IOException {
-        ApiCall example = new ApiCall();
+    public static String result(String characterId) throws IOException {
+        ApiCall characterCall = new ApiCall();
         Properties constant = Constants.property;
         String url = constant.getProperty("MARVEL_BASE_URL")
                 + constant.getProperty("END_POINT_CHARACTERS");
@@ -33,8 +33,6 @@ public class ApiCall {
                 + "&ts=" + constant.getProperty("TS")
                 + "&hash=" + constant.getProperty("HASH");
 
-        String response = example.run(url + characterId + parameters);
-
-        log.info(response);
+        return characterCall.run(url + characterId + parameters);
     }
 }

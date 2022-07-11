@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
 
+import static demo.api.call.Character.showData;
 import static demo.api.call.Constants.loadConfig;
 import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
@@ -45,7 +46,11 @@ public class CommandLineInterface {
                 log.println("Numero no valido!\nDebe seleccionar uno del 1 al 5");
                 break;
         }
-        log.println("id elegido" + id);
-        ApiCall.result(id);
+        Character result = showData(id);
+        log.println(
+                          "ID del personaje: " + result.id
+                        + "\nNombre: " + result.name
+                        + "\nDescripcion: " + result.description
+        );
     }
 }
